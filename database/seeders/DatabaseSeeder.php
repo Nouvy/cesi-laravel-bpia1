@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        User::factory(1000)->create();
+        User::factory(20000)->create();
 
         $this->call([
             ArticleSeeder::class,
+            HistoriqueTemperatureSeeder::class,
         ]);
 
     }
