@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h1>Liste des articles</h1>
-    <a href="create-article.html" class="btn btn-success">Créer un article <i data-feather="plus"></i></a>
+    <a href="{{ route('articles.create') }}" class="btn btn-success">Créer un article <i data-feather="plus"></i></a>
     <table class="table table-striped" id="myTable">
         <thead>
         <tr class="table-primary">
@@ -13,8 +13,18 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($articles as $article)
+            <tr>
+                <td>{{ $article->id }}</td>
+                <td>{{ $article->titre }}</td>
+                <td>{{ $article->description }}</td>
+                <td><a href="" class="btn btn-info"><i data-feather="eye"></i></a><a href="" class="btn btn-warning"><i data-feather="edit"></i></a><a href="" class="btn btn-danger"><i data-feather="trash-2"></i></a></td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
+    <!-- End Table User -->
+    {{ $articles->links("pagination::bootstrap-5") }}
 </div>
 
 <div class="modal" id="myModal" tabindex="-1">

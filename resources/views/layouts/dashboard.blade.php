@@ -23,7 +23,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('utilisateurs.index') }}"><i data-feather="user"></i>Utilisateurs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('blog.index') }}"><i data-feather="folder"></i>Blog</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('articles.index') }}"><i data-feather="folder"></i>Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('temperature.index') }}"><i data-feather="thermometer"></i>Temperatures</a>
