@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class ArticleController extends Controller
 {
@@ -42,32 +43,44 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Article $article)
     {
-        //
+        Carbon::setLocale('fr');
+        return view('dashboard.blog.show',  compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Article $article)
     {
-        //
+        //$article = Article::find($id);
+        return view('dashboard.blog.edit',  compact('article'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'titre' => 'required|string|max:10',
+            'description' => 'required|string|min:20',
+        ]);
+
+        //$article = Article::find($id);
+
+        $article->update($request->all());
+
+        return redirect()->route('articles.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
