@@ -10,7 +10,7 @@ class HistoriqueTemperature extends Model
     /** @use HasFactory<\Database\Factories\HistoriqueTemperatureFactory> */
     use HasFactory;
 
-    protected $fillable = ['temperature'];
+    protected $fillable = ['temperature', 'capteur_id'];
 
     public function capteur()
     {

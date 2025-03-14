@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Capteur;
+use App\Models\HistoriqueTemperature;
 use Illuminate\Http\Request;
 
 class HistoriqueTemperatureController extends Controller
@@ -11,7 +13,8 @@ class HistoriqueTemperatureController extends Controller
      */
     public function index()
     {
-        return view('dashboard.temperature.index');
+        $historiqueTemperatures = HistoriqueTemperature::all();
+        return view('dashboard.temperature.index',  compact('historiqueTemperatures'));
     }
 
     /**
@@ -19,7 +22,8 @@ class HistoriqueTemperatureController extends Controller
      */
     public function create()
     {
-        return view('dashboard.temperature.new');
+        $capteurs = Capteur::all();
+        return view('dashboard.temperature.new', compact('capteurs'));
     }
 
     /**
@@ -27,7 +31,14 @@ class HistoriqueTemperatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'temperature' => 'required|numeric',
+            'capteur_id'  => 'required|exists:capteurs,id'
+        ]);
+
+        HistoriqueTemperature::create($request->all());
+
+        return redirect()->route('historique_temperatures.index');
     }
 
     /**
@@ -41,17 +52,25 @@ class HistoriqueTemperatureController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(HistoriqueTemperature $historiqueTemperature)
     {
-        //
+        $capteurs = Capteur::all();
+        return view('dashboard.temperature.edit',  compact('historiqueTemperature', 'capteurs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, HistoriqueTemperature $historiqueTemperature)
     {
-        //
+        $request->validate([
+            'temperature' => 'required|numeric',
+            'capteur_id'  => 'required|exists:capteurs,id'
+        ]);
+
+        $historiqueTemperature->update($request->all());
+
+        return redirect()->route('historique_temperatures.index');
     }
 
     /**

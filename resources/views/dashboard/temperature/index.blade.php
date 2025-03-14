@@ -10,11 +10,29 @@
         <tr class="table-primary">
             <th>ID</th>
             <th>Température</th>
-            <th>Date</th>
+            <th>Capteur</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($historiqueTemperatures as $historiqueTemperature)
+            <tr>
+                <td>{{ $historiqueTemperature->id }}</td>
+                <td> {{ $historiqueTemperature->temperature }} </td>
+                <td>{{ $historiqueTemperature->capteur->nom }}</td>
+                <td class="text-center">
+                    <a href="{{ route('historique_temperatures.show', $historiqueTemperature->id) }}" class="btn btn-info btn-sm">
+                        <i data-feather="eye"></i>
+                    </a>
+                    <a href="{{ route('historique_temperatures.edit', $historiqueTemperature->id) }}" class="btn btn-warning btn-sm">
+                        <i data-feather="edit"></i>
+                    </a>
+                    <button class="btn btn-danger btn-sm delete-btn" data-id="{{ $historiqueTemperature->id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <i data-feather="trash-2"></i>
+                    </button>
+                </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </div>

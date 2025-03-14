@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('capteurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->string('num_serie');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
         });
