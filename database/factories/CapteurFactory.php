@@ -17,7 +17,7 @@ class CapteurFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'temperature' => $this->faker->numberBetween(-30, 30),
         ];
     }
 }
