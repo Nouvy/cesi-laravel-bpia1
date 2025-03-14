@@ -26,7 +26,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('articles.index') }}"><i data-feather="folder"></i>Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('temperature.index') }}"><i data-feather="thermometer"></i>Temperatures</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('historique_temperatures.index') }}"><i data-feather="thermometer"></i>Temperatures</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

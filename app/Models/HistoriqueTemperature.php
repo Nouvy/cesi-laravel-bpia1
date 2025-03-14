@@ -11,4 +11,9 @@ class HistoriqueTemperature extends Model
     use HasFactory;
 
     protected $fillable = ['temperature'];
+
+    public function capteur()
+    {
+        return $this->belongsTo(Capteur::class);
+    }
 }

@@ -2,6 +2,9 @@
 @section('content')
 <div class="container">
     <h1>Historique des températures</h1>
+    <a href="{{ route('historique_temperatures.create') }}" class="btn btn-success">
+        <i data-feather="plus"></i> Créer un historique temperature
+    </a>
     <table class="table table-striped" id="myTable">
         <thead>
         <tr class="table-primary">

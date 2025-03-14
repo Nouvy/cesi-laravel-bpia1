@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HistoriqueTemperatureController;
 use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,7 @@ Route::prefix('dashboard')->group(function () {
 
     Route::resource('utilisateurs', UtilisateurController::class)->middleware(['auth']);
 
-    Route::get('/temperature', function () {
-        return view('dashboard.temperature.index');
-    })->name('temperature.index')->middleware(['auth']);
+    Route::resource('historique_temperatures', HistoriqueTemperatureController::class)->middleware(['auth']);
 });
 
 Auth::routes();
