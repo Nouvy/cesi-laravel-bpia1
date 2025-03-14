@@ -11,4 +11,9 @@ class Categorie extends Model
     protected $fillable = [
         'nom'
     ];
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Models\Article');
+    }
 }

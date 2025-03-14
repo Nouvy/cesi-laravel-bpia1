@@ -17,6 +17,7 @@
                         <th>Titre</th>
                         <th>Description</th>
                         <th>Utilisateur</th>
+                        <th>Catégories</th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -27,6 +28,11 @@
                             <td>{{ $article->titre }}</td>
                             <td>{{ $article->description }}</td>
                             <td>{{ $article->user->name }}</td>
+                            <td>
+                                @foreach($article->categories as $categorie)
+                                    <span class="badge text-bg-secondary">{{ $categorie->nom }}</span>
+                                @endforeach
+                            </td>
                             <td class="text-center">
                                 <a href="{{ route('articles.show', $article->id) }}" class="btn btn-info btn-sm">
                                     <i data-feather="eye"></i>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -22,7 +23,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('dashboard.blog.new');
+        $categories = Categorie::all();
+        return view('dashboard.blog.new', compact('categories'));
     }
 
     /**
@@ -33,6 +35,8 @@ class ArticleController extends Controller
         $request->validate([
             'titre' => 'required|string|max:10',
             'description' => 'required|string|min:20',
+            'categories' =>  'required|array|min:1',
+            'categories.*' => 'exists:categories,id',
         ]);
 
         //Récupération de l'utilisateur connecté
@@ -44,6 +48,7 @@ class ArticleController extends Controller
         $article->user_id = $user->id;
         $article->save();
 
+        $article->categories()->attach($request->input('categories'));
         //Article::create($request->all());
 
         return redirect()->route('articles.index');
