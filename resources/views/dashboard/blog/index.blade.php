@@ -16,6 +16,7 @@
                         <th>ID</th>
                         <th>Titre</th>
                         <th>Description</th>
+                        <th>Utilisateur</th>
                         <th class="text-center">Action</th>
                     </tr>
                     </thead>
@@ -25,6 +26,7 @@
                             <td>{{ $article->id }}</td>
                             <td>{{ $article->titre }}</td>
                             <td>{{ $article->description }}</td>
+                            <td>{{ $article->user->name }}</td>
                             <td class="text-center">
                                 <a href="{{ route('articles.show', $article->id) }}" class="btn btn-info btn-sm">
                                     <i data-feather="eye"></i>

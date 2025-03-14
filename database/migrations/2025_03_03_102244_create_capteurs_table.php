@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historique_temperatures', function (Blueprint $table) {
+        Schema::create('capteurs', function (Blueprint $table) {
             $table->id();
-            $table->float('temperature');
-            $table->foreignId('capteur_id')->constrained();
+            $table->string('nom');
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historique_temperatures');
+        Schema::dropIfExists('capteurs');
     }
 };

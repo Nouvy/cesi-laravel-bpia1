@@ -35,7 +35,16 @@ class ArticleController extends Controller
             'description' => 'required|string|min:20',
         ]);
 
-        Article::create($request->all());
+        //Récupération de l'utilisateur connecté
+        $user = auth()->user();
+
+        $article = new Article();
+        $article->titre = $request->input('titre');
+        $article->description = $request->input('description');
+        $article->user_id = $user->id;
+        $article->save();
+
+        //Article::create($request->all());
 
         return redirect()->route('articles.index');
     }

@@ -13,7 +13,13 @@ class Article extends Model
     protected $fillable = [
         'titre',
         'description',
-        'lien_image'
+        'lien_image',
+        'user_id',
     ];
-    
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

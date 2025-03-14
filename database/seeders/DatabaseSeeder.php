@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
         User::factory(20000)->create();
 
         $this->call([
-            ArticleSeeder::class,
-            HistoriqueTemperatureSeeder::class,
+            CategorieSeeder::class,
+            //ArticleSeeder::class,
+            //HistoriqueTemperatureSeeder::class,
         ]);
 
     }
