@@ -35,12 +35,17 @@
                     </thead>
                     <tbody>
                     @foreach($categories as $categorie)
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="categories[]" value="{{ $categorie->id }}">
-                            </td>
-                            <td>{{ $categorie->nom }}</td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="categories[]"
+                                           value="{{ $categorie->id }}"
+                                            @foreach($article->categories as $categorieArt)
+                                                @if($categorie->id == $categorieArt->id) checked @endif
+                                            @endforeach
+                                    >
+                                </td>
+                                <td>{{ $categorie->nom }}</td>
+                            </tr>
                     @endforeach
                     </tbody>
                 </table>

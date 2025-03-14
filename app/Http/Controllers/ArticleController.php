@@ -60,7 +60,9 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         Carbon::setLocale('fr');
-        return view('dashboard.blog.show',  compact('article'));
+        $categories = $article->categories;
+        return view('dashboard.blog.show',
+            compact('article', 'categories'));;
     }
 
     /**
@@ -81,11 +83,15 @@ class ArticleController extends Controller
         $request->validate([
             'titre' => 'required|string|max:10',
             'description' => 'required|string|min:20',
+            'categories' =>  'required|array|min:1',
+            'categories.*' => 'exists:categories,id',
         ]);
 
         //$article = Article::find($id);
 
         $article->update($request->all());
+
+        $article->categories()->sync($request->input('categories'));
 
         return redirect()->route('articles.index');
     }
@@ -95,6 +101,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $article->categories()->detach();
         $article->delete();
         return redirect()->route('articles.index');
     }
