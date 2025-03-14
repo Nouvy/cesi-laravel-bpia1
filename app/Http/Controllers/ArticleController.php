@@ -68,8 +68,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //$article = Article::find($id);
-        return view('dashboard.blog.edit',  compact('article'));
+        $categories = Categorie::all();
+        return view('dashboard.blog.edit',
+            compact('article', 'categories'));
     }
 
     /**
